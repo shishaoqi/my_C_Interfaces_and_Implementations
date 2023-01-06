@@ -1,7 +1,5 @@
 /*
  * File: genlib.h
- * Version: 1.0
- * Last modified on Sun Jul 24 10:32:49 1994 by eroberts
  * -----------------------------------------------------
  * This file contains several definitions that form the
  * core of a general-purpose ANSI C library developed by Eric
@@ -49,18 +47,18 @@
 #ifdef THINK_C
     typedef int bool;
 #else
-#  ifdef TRUE
-#    ifndef bool
-#      define bool int
-#    endif
-#  else
-#    ifdef bool
-#      define FALSE 0
-#      define TRUE 1
-#    else
-        typedef enum {FALSE, TRUE} bool;
-#    endif
-#  endif
+#   ifdef TRUE
+#       ifndef bool
+#           define bool int
+#       endif
+#   else
+#       ifdef bool
+#           define FALSE 0
+#           define TRUE 1
+#       else
+            typedef enum {FALSE, TRUE} bool;
+#       endif
+#   endif
 #endif
 
 /*

@@ -1,4 +1,6 @@
 #include "genlib.h"
+#include <assert.h>
+#include <string.h>
 
 typedef struct {
     char *name;
@@ -16,6 +18,9 @@ int main() {
     hm1->name = "ZhangSan";
     hm1->age = 20;
     hm1->country = "CN";
+    assert(strcmp(hm1->name, "ZhangSan") == 0);
+    assert(hm1->age == 20);
+    assert(strcmp(hm1->country, "CN") == 0);
     printf("hm1 -- name: %s, age: %d, country: %s\n", hm1->name, hm1->age, hm1->country);
 
 
@@ -25,5 +30,8 @@ int main() {
     hm2->name = "LiSi";
     hm2->age = 22;
     hm2->country = "US";
+    assert(strcmp(hm2->name, "LiSi") == 0);
+    assert(hm2->age == 22);
+    assert(strcmp(hm2->country, "US") == 0);
     printf("hm2 -- name: %s, age: %d, country: %s\n", hm2->name, hm2->age, hm2->country);
 }
