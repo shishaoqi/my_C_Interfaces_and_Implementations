@@ -1,16 +1,18 @@
-CC := gcc
-#CFLAGS  := -std=gnu99 -ggdb -ffunction-sections # -w:关闭所有告警
-CFLAGS := -g -I. $(CCFLAGS)
-SRCS   := $(wildcard *.c) # 当前目录下的所有的.c文件 
-OBJS   := $(SRCS:.c=.o)   # 将所有的.c文件名替换为.o
-LIB	   := lib.a
+CC  := gcc
+CFLAGS  := -g -I. $(CCFLAGS) -O0 -std=c89
+SRCS    := $(wildcard *.c) # 当前目录下的所有的.c文件 
+OBJS    := $(SRCS:.c=.o) # 将所有的.c文件名替换为.o
+LIB 	:= libm.a
 
-all:$(LIB) gccmy
+all:$(LIB) gccm
 
 # ***************************************************************
 # C compilations
 genlib.o: genlib.c genlib.h
 	$(CC) $(CFLAGS) -c genlib.c
+
+strlib.o: strlib.c strlib.h genlib.h
+	$(CC) $(CFLAGS) -c strlib.c
 
 $(LIB):$(OBJS)
 	-rm -f $(LIB)
@@ -18,19 +20,17 @@ $(LIB):$(OBJS)
 	ranlib $(LIB)
 
 # ***************************************************************
-# Entry to reconstruct the gccmy script
+# Entry to reconstruct the gccm script
 
-gccmy: makefile
-	@echo '#!/bin/bash' > gccmy
-	@echo 'INCLUDE='\"`pwd`\" >> gccmy
-	@echo 'LIB="$$INCLUDE/$(LIB)"' >> gccmy
-	@echo 'LIBRARIES="$$LIB"' >> gccmy
-	@echo 'gcc -g -I$$INCLUDE $$* $$LIBRARIES' >> gccmy
-	@chmod a+x gccmy
-	@echo '[gccmy script created]'
+gccm: makefile
+	@echo '#!/bin/bash' > gccm
+	@echo 'INCLUDE='\"`pwd`\" >> gccm
+	@echo 'LIB="$$INCLUDE/$(LIB)"' >> gccm
+	@echo 'LIBRARIES="$$LIB"' >> gccm
+	@echo 'gcc -g -I$$INCLUDE $$* $$LIBRARIES' >> gccm
+	@chmod a+x gccm
+	@echo '[gccm script created]'
 
 clean:
-	rm -f *.o
-	rm -f $(BINS)
-	rm -f $(LIB)
-	rm -f gccmy
+	rm -f *.o *.a
+	rm -f gccm
