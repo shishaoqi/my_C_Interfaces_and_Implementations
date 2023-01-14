@@ -124,6 +124,7 @@ string CopyString(string s) {
     len = strlen(s);
     newStr = CreateString(len);
     strcpy(newStr, s);
+    //newStr[len] = '\0';//有这句与无这句，断点调试的结果来看，没差？？？？？
 
     return newStr;
 }
@@ -196,6 +197,13 @@ string IntegerToString(int n) {
     return CopyString(buffer);
 }
 
+string RealToString(double d) {
+    char buffer[MaxDigits];
+
+    sprintf(buffer, "%lf", d);//sprintf(buffer, "%G", d);  
+    return (CopyString(buffer));
+}
+
 int StringToInteger(string s) {
     int result;
     char dummy;
@@ -206,13 +214,6 @@ int StringToInteger(string s) {
         Error("StringToInteger called on illegal number %s", s);
 
     return (result);
-}
-
-string RealToString(double d) {
-    char buffer[MaxDigits];
-
-    sprintf(buffer, "%G", d);  
-    return (CopyString(buffer));
 }
 
 double StringToReal(string s) {

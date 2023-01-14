@@ -116,32 +116,6 @@ string CopyString(string s);
 
 /* Section 2 -- String comparison functions */
 
-/*
- * Function: StringEqual
- * Usage: if (StringEqual(s1, s2)) ...
- * -----------------------------------
- * This function returns TRUE if the strings s1 and s2 are
- * equal.  For the strings to be considered equal, every
- * character in one string must precisely match the
- * corresponding character in the other.  Uppercase and
- * lowercase characters are considered to be different.
- */
-
-bool StringEqual(string s1, string s2);
-
-/*
- * Function: StringCompare
- * Usage: if (StringCompare(s1, s2) < 0) ...
- * -----------------------------------------
- * This function returns a number less than 0 if string s1
- * comes before s2 in alphabetical order, 0 if they are equal,
- * and a number greater than 0 if s1 comes after s2.  The
- * ordering is determined by the internal representation used
- * for characters, which is usually ASCII.
- */
-
-int StringCompare(string s1, string s2);
-
 /* Section 3 -- Search functions */
 
 /*
@@ -204,17 +178,6 @@ string ConvertToUpperCase(string s);
 string IntegerToString(int n);
 
 /*
- * Function: StringToInteger
- * Usage: n = StringToInteger(s);
- * ------------------------------
- * This function converts a string of digits into an integer.
- * If the string is not a legal integer or contains extraneous
- * characters, StringToInteger signals an error condition.
- */
-
-int StringToInteger(string s);
-
-/*
  * Function: RealToString
  * Usage: s = RealToString(d);
  * ---------------------------
@@ -225,6 +188,17 @@ int StringToInteger(string s);
  */
 
 string RealToString(double d);
+
+/*
+ * Function: StringToInteger
+ * Usage: n = StringToInteger(s);
+ * ------------------------------
+ * This function converts a string of digits into an integer.
+ * If the string is not a legal integer or contains extraneous
+ * characters, StringToInteger signals an error condition.
+ */
+
+int StringToInteger(string s);
 
 /*
  * Function: StringToReal
