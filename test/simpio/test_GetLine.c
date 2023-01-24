@@ -7,4 +7,5 @@ int main() {
     printf("GetLine reads a line of text from standard input and returns the line as a string: ");
     s = GetLine();
     printf("get line: %s\n", s);
+    FreeBlock(s); // 记得内存释放
 }
